@@ -1,0 +1,24 @@
+DemandForHomes<-read.csv('~/Downloads/web1.csv', header=TRUE,sep=",")
+
+TSdemandForHomes <- ts(DemandForHomes$Seattle, start=c(2004,1), frequency = 4) # coerce the data into a time series object
+plot(TSdemandForHomes)
+
+(a): # ans:
+The series has no clear trend, but exhibits a seasonal effect of period 4.
+
+
+(b): #use rollmean to smooth the data, using a suitable lag and centering the new series.
+TSSmoothed<-rollmean(TSdemandForHomes,4,align=c("center"))
+
+(c): use ts.union joining two time series together
+
+
+
+Q2:
+unemployed<-read.csv('~/Downloads/unemployed.csv', header=TRUE,sep=",")
+TS <- ts(unemployed$Value, start=c(1970,1), frequency = 12)
+acfed<-acf(TS,lag.max=1)
+diff1<-diff(TS)
+acf1<-acf(diff1,lag.max=1)
+diff2<-diff(diff1)
+acf2<-acf(diff2,lag.max=1)
